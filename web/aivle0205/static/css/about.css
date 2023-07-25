@@ -1,0 +1,446 @@
+@font-face {
+    font-family: 'Jonkey One';
+    src: url('../css/font/Jockeyone.ttf') format('truetype');
+}@font-face {
+    font-family: 'Jeju Gothic';
+    src: url('../css/font/JejuGothic.ttf') format('truetype');
+}
+:root {
+    --base-font-family: 'Jeju Gothic';
+    --title-font-family: 'Jockey One';
+
+    --nav-default-bg: #003702;
+    --nav-default-font: #CDE1CF;
+    --nav-shrink-bg: #003702;
+    --nav-shrink-font: #CDE1CF;
+    --nav-popup-bg: #002001;
+
+    --bs-primary-rgb: 0, 55, 2;
+    /* #003702 */
+    --bs-primary-text: #CDE1CF;
+    --bs-light-rgb: 205, 225, 207;
+    /* #CDE1CF */
+    --bs-light-text: #003702;
+
+    --font-hover-rgb: 0, 55, 2;
+    /* #003702 */
+
+    --bs-nav-height: 5vh;
+
+    --lightgreen : #003702;
+    --green : #CDE1CF;
+    --darkgreen : #002001;
+    --lightviolet : #D686CE;
+}
+body, html{
+    /* height: 100%; */
+    margin: 0;
+    padding: 0;
+    background-color: #003702;
+}
+/* 네비게이션 */
+/*####################################*/
+/*네비바 부분*/
+nav{
+  z-index: 99;
+  height: 5vh;
+  width: 100%;
+  position: fixed;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.menu {
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: Jonkey One;
+}
+.menu > li {
+  width: 20%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: var(--darkgreen);
+}
+.menu > li:hover a{
+  color: var(--darkgreen);
+}
+.menu a {
+  color: var(--green);
+}
+
+.submenu > li {
+  line-height: 50px;
+  background-color: var(--green);
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+  margin-right: 2em;
+}
+
+.menu > li:hover {
+  background-color: var(--green);
+  transition-duration: 0.5s;
+  /* border-radius: 10px; */
+}
+.menu > li:hover .submenu li:hover{
+  background-color: var(--darkgreen);
+  border-radius: 10px;
+}
+.menu > li:hover .submenu li:hover a{
+  color: var(--green);
+}
+.menu > li:hover .submenu {
+  height: 110px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 0.7s;
+}
+
+#container01{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background-color: #5A5094;
+    color: #fff;
+    padding: 10px;
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    background-color: #003702;
+}
+
+
+.bg01 > div.container01:nth-child(2) {
+    flex-grow: 4;
+}
+
+.bg01 > div.container01:nth-child(1),
+.bg01 > div.container01:nth-child(3) {
+    flex-grow: 1;
+}
+
+.bg01 {
+    background-color: #003702;
+}
+
+#title {
+    font-size: 150px;
+    font-family: Jonkey One;
+    font-weight:600;
+    background-color: #003702;
+    color: #CDE1CF;
+    text-shadow: 0px 6px #D686CE;
+    margin-bottom: -70px;
+}
+
+/* Team 텍스트 스타일 */
+.bg02 .container02 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003702;
+}
+
+.bg02 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 5vh;
+    margin: 0;
+    background-color: #003702;
+    color: #f8f5b9;
+    font-family: Jeju Gothic;
+    flex-direction: column;
+}
+
+.bg02 > div.container02:nth-child(2) {
+    flex-grow: 4;
+}
+
+.bg02 > div.container02:nth-child(1),
+.bg02 > div.container02:nth-child(3) {
+    flex-grow: 1;
+}
+
+.bg03 {
+    display: flex;
+    justify-content: space-between;
+    height: 70vh;
+    align-items: center;
+    background-color: #003702;
+}
+
+.spacer {
+    height: 100px;
+    background-color: #003702;
+  }
+
+/* 프로필 칸 스타일 */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #003702;
+}
+#team-title {
+    text-align: center;
+    color: #779E9D;
+    font-size: 50px;
+    text-shadow: 0px 3px #D686CE;
+    font-weight: bold;
+    font-family: Jonkey One;
+}
+
+#service-title {
+    text-align: center;
+    color: #779E9D;
+    font-size: 40px;
+    text-shadow: 0px 3px #D686CE;
+    font-weight: bold;
+    font-family: Jeju Gothic;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.profile-item {
+    width: 200px;
+    height: 200px;
+    border: 4px dotted #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.profile-item img {
+    width: 150px;
+}
+
+.profile-name {
+    color:#D686CE;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    font-family: Jeju Gothic;
+}
+
+.profile-section {
+    margin-bottom: 50px;
+}
+
+footer {
+    margin-top:100px;
+    margin-bottom: 50px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  background: url(https://goo.gl/OeVhun) center no-repeat;
+  background-size: cover;
+}
+
+.blur-it {
+  filter: blur(4px);
+}
+
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  background: rgba(41, 171, 164, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.modal-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  width: 600px;
+  height: 400px;
+  display: block;
+  margin: 50% 0 0 -300px;
+  position: relative;
+  top: 50%; 
+  left: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal-wrapper.open .modal {
+  margin-top: -200px;
+  opacity: 1;
+}
+.modal right {
+  right: 0px;
+}
+.btn-close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.close-icon {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  transition:color 0.1s ease;
+}
+
+.btn-close:hover .close-icon{
+  color:red;
+}
+
+.head { 
+  width: 90%;
+  height: 32px;
+  padding: 12px 30px;
+  overflow: hidden;
+  background: #D686CE;
+}
+
+.content {
+  padding: 10%;
+}
+
+.modal .content .profile-info {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .content .profile-name,
+.modal .content .profile-description {
+    margin-top: 10px;
+    text-align: center;
+}
+
+ /*################ footer ##################*/
+/*footer부분*/
+.bg04 {
+  background-color: var(--green);
+  color: var(--lightgreen);
+  font-family: Jeju Gothic;
+  width: 100%;
+}
+#bg04-01-01 {
+  border-color: var(--lightgreen);
+}
+
+#bg04-02 {
+  margin-top: 0%;
+  margin-left: 20%;
+  font-family: Jonkey One;
+  font-size: 100px;
+  font-weight: bold;
+}
+#bg04-03-hr{
+  border: 1px solid var(--lightgreen);
+  width: 60%;
+  background-color: var(--green);
+}
+/*###############################*/
+.bg04-02 {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg04-02 .bg04-02-img {
+  padding: 2px;
+}
+
+/*###############################*/
+.bg04-03{
+  margin-left: 18%;
+}
+.bg04 .bg04-03 {
+  display: flex;
+}
+
+.bg04 .bg04-03 ul {
+  list-style: none;
+}
+
+.bg04 #bg04-03-01 {
+  width: 70%;
+}
+
+.bg04 .bg04-03-01 {
+  float: right;
+  width: 15%;
+  text-align: left;
+}
+
+.bg04 .bg04-03-01 li {
+  padding-top: 3px;
+}
+
+.bg04-04 {
+  width: 100%;
+  display: flex;
+}
+
+.bg04-04 #bg04-04-01 {
+  width: 68%;
+}
+
+.bg04-04 .bg04-04-01 {
+  text-align: left;
+  width: 32%;
+}
+.bg04-03-li{
+  font-family: Jeju Gothic;
+  color: var(--lightgreen);
+}
+.bg04-03-li:visited{
+  color: var(--lightgreen);
+}
+.bg04-03-li:hover{
+  color:var(--lightviolet);
+}
+.bg04-03 >ul{
+  display: flex;
+}
+.bg04-03>ul li{
+  margin-right: 1em;
+}

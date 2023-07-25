@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>휴대전화 인증</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .mb-3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .upper-section {
+        margin-bottom: 0.5rem;
+      }
+
+      .lower-section {
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-3 form-container">
+      <div class="upper-section">
+        <!-- 휴대전화 번호 입력 폼 -->
+        <form id="verification-request-form">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="phone-number">휴대전화</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phone-number"
+              required
+            />
+            <button type="button" class="btn btn-primary" onclick="sendSms()">
+              인증번호
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="lower-section">
+        <div
+          class="container my-3"
+          id="verification-code-div"
+          style="display: none"
+        >
+          <!-- 인증번호 입력 폼 -->
+          <form id="verification-form">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="auth-number">인증번호</label>
+              <input
+                type="text"
+                class="form-control"
+                id="auth-number"
+                required
+              />
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="verification-submit-button"
+                onclick="submitVerificationCode()"
+              >
+                인증하기
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div
+          class="container my-3"
+          id="message-div"
+          style="display: none"
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      var verificationCodeSubmitted = false; // 인증번호가 이미 확인되었는지 여부를 나타내는 변수
+
+      function sendSms() {
+        var phoneNumber = document.getElementById('phone-number').value;
+        var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0]
+          .value; // CSRF 토큰 값 가져오기
+
+        // AJAX를 사용하여 서버에 휴대전화 번호 전송
+        $.ajax({
+          type: 'POST',
+          url: '/accounts/sms/', // 휴대전화 번호 전송을 처리하는 URL
+          data: JSON.stringify({ phone_number: phoneNumber }),
+          dataType: 'json',
+          contentType: 'application/json',
+          headers: { 'X-CSRFToken': csrfToken },
+          success: function (response) {
+            // 서버에서의 응답 처리
+            alert('인증번호를 전송했습니다. 휴대전화로 확인해주세요.');
+
+            // 인증번호 요청 후, 인증번호 입력 폼을 보이도록 변경
+            document.getElementById('verification-code-div').style.display =
+              'block';
+          },
+          error: function (xhr, status, error) {
+            // 에러 처리
+            alert('인증번호 전송에 실패했습니다.');
+          },
+        });
+      }
+
+      function submitVerificationCode() {
+        if (verificationCodeSubmitted) {
+          // 이미 인증번호가 확인되었을 경우, 중복 제출 방지
+          return;
+        }
+
+        var phoneNumber = document.getElementById('phone-number').value;
+        var authNumber = document.getElementById('auth-number').value;
+        var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[1]
+          .value; // CSRF 토큰 값 가져오기
+
+        // AJAX를 사용하여 서버에 인증번호 제출
+        $.ajax({
+          type: 'POST',
+          url: '/accounts/sms/check/', // 인증번호 제출을 처리하는 URL
+          data: JSON.stringify({
+            phone_number: phoneNumber,
+            auth_number: authNumber,
+          }),
+          dataType: 'json',
+          contentType: 'application/json',
+          headers: { 'X-CSRFToken': csrfToken },
+          success: function (response) {
+            // 서버에서의 응답 처리
+            if (response.message === 'SUCCESS') {
+              showMessage('인증이 완료되었습니다.');
+
+              // 부모 창으로 인증 완료 메시지 전달
+              window.opener.postMessage('인증 완료', '*');
+
+              // 팝업 창 닫기
+              window.close();
+
+              // 추가 작업 수행 또는 페이지 이동 등 필요한 동작 수행
+            }
+            // 인증번호 확인 후, 중복 제출 방지를 위해 버튼 비활성화
+            document.getElementById(
+              'verification-submit-button'
+            ).disabled = true;
+            verificationCodeSubmitted = true;
+          },
+          error: function (xhr, status, error) {
+            if (xhr.status === 403) {
+              showMessage('유효하지 않은 인증번호입니다.');
+            } else if (xhr.status === 401) {
+              showMessage('이미 등록된 휴대전화 번호입니다.');
+            } else {
+              showMessage('인증번호 확인에 실패했습니다.');
+            }
+          },
+        });
+      }
+
+      function showMessage(message) {
+        var messageDiv = document.getElementById('message-div');
+        messageDiv.innerHTML = message;
+        messageDiv.style.display = 'block';
+      }
+    </script>
+  </body>
+</html>

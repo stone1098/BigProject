@@ -1,0 +1,162 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/css?family=Jeju+Gothic">
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Junckey+One">
+                        <link
+                            rel="stylesheet"
+                            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+                            integrity="sha384-DZg+u82t7q7bPQ4zrZAYLzQanOQTfz1XL8t6OGI7GKsHS+jMqnuJ4XjLGYQK+oiF"
+                            crossorigin="anonymous">
+                            <script
+                                src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"
+                                integrity="sha384-cmZv6n4rYPO8/3qFDJxC9uQBUqMEeK6IdTPxZtQ7to1dZf/r4Edp8Hq94vSwTTSk"
+                                crossorigin="anonymous"></script>
+                            <!-- Required meta tags -->
+                            <title>contact us</title>
+                            <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}"/>
+
+                        </head>
+                        <body>
+                            <div id="container01">
+                                <!--################navi###################-->
+                                <nav class="nav scroll-hidden">
+                                    <ul class="menu">
+                                            <li>
+                                                <a href="{% url 'index' %}">Home</a>
+                                            </li>
+                                        <li><a href="#">Service+</a>
+                                        <ul class="submenu">
+                                            <li><a href="{% url 'repair_cost:index' %}">Repair Cost</a></li>
+                                            <li><a href="{% url 'fault_ratio:index' %}">Fault Ratio</a></li>
+                                        </ul></li>
+                                        <li><a href="#">Support+</a>
+                                            <ul class="submenu">
+                                                <li><a href="{% url 'post:index' %}">Post Board</a></li>
+                                                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                            </ul></li>
+                                            {% if user.is_authenticated %}
+                                            <li><a href="#" onClick="jumpToID(event, 'support')">account</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                                    <li><a href="{% url 'accounts:update' %}">update</a></li>
+                                                </ul>
+                                            </li>
+                                            {% else %}
+                                            <li><a href="{% url 'login' %}">Login</a></li>{% endif %}</li>
+                                        <li><a href="{% url 'about' %}">About Us</a></li>
+                                    </ul>
+                                    </nav>
+                                <!--################navi###################-->
+                                <main>
+                                    <section class="bg01">
+                                        <div class="left-section">
+                                            <div class="container01">
+                                                <div>
+                                                    <div id="title">
+                                                        contact
+                                                    </div>
+                                                    <div id="subtitle">
+                                                        Please provide your
+                                                        <br>
+                                                            contact infromation
+                                                        </div>
+                                                    </div>
+                                                    <div id="form">
+                                                        <form method="post" action="{% url 'contact:send_email' %}">
+                                                            {% csrf_token %}
+                                                            <div class="form-field">
+                                                                <label for="name" class="form-label">Name</label>
+                                                                <input type="text" id="name" class="form-input" name='name'>
+                                                            </div>
+                                                            <div class="form-field">
+                                                                <label for="email" class="form-label">Email</label>
+                                                                <input type="email" id="email" class="form-input" name='email'>
+                                                            </div>
+                                                            <div class="form-field">
+                                                                <label for="phone" class="form-label">Phone</label>
+                                                                <input type="tel" id="phone" class="form-input" name='phone'>
+                                                            </div>
+                                                            <div class="form-field">
+                                                                <label for="message" class="form-label">Message</label>
+                                                                <div class="form-textarea-container" >
+                                                                    <textarea id="message" placeholder="MESSAGE" class="form-textarea" name='message'></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-submit">
+                                                                <button type="Submit">submit</button>
+                                                            </div>
+                                                        </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-section">
+                                                            <div class="address-title">Address</div>
+                                                            <div class="address-description">
+                                                                90, Buljeong-ro,<br>Bundang-gu,
+                                                                    <br>Seongnam-si,
+                                                                        <br>Gyeonggi-do,
+                                                                            <br>Republic of Korea
+                                                                            </div>
+                                                                        </section>
+
+                                                                        <!--############## footer ###############-->
+                                                                        <footer class="bg04" id="footer">
+		
+                                                                            <div id="bg04-02">AIVLE SCHOOL</div>
+                                                                            <hr id="bg04-03-hr">
+                                                                    
+                                                                            <div class="bg04-03">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <!--###### 이용약관 ######-->
+                                                                                        <a href="{% url 'test' %}" onclick="goPrivacy(event)" class = "bg04-03-li">개인정보 처리방침 이용약관</a>
+                                                                                        <script>
+                                                                                            function goPrivacy(event) {
+                                                                                                event.preventDefault();  // 링크 클릭 시 기본 동작(페이지 이동)을 막음
+                                                                                                // 팝업 창 열기
+                                                                                                window.open('/test/', '_blank', 'width=600,height=500,scrollbars=yes');
+                                                                                            }
+                                                                                        </script>
+                                                                                        <!--##############-->
+                                                                                    </li>
+                                                                                    <li><a href="{% url 'contact' %}" class="bg04-03-li">Contact Us</a></li>
+                                                                                    <li><a href="{% url 'about' %}" class="bg04-03-li">About Us</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <footer class="bg04-04">
+                                                                                <div id="bg04-04-01"></div>
+                                                                                <div class="bg04-04-01">Copyright 2023 AIVLE 2-5.</div>
+                                                                            </footer>
+                                                                      </footer>
+                                                                    </main>
+                                                                    <script>
+                                                                        {% if success_message %}
+                                                                            showMessage('{{ success_message }}', 'success');
+                                                                        {% endif %}
+                                                                
+                                                                        function showMessage(message, messageType) {
+                                                                            const messageElement = document.createElement('div');
+                                                                            messageElement.textContent = message;
+                                                                            messageElement.classList.add(messageType);
+                                                                            messageElement.classList.add('green'); 
+                                                                            document.getElementById('form').appendChild(messageElement);
+                                                                        }
+                                                                    </script>
+                                                                    
+                                                                    <style>
+                                                                        .success {
+                                                                            color: green;
+                                                                        }
+                                                                    </style>
+                                                                </body>
+                                                            </html>

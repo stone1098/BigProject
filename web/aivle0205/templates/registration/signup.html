@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
+<section>
+	<div class="container01">
+		<div id="title">Sign up</div>
+	</div>
+</section>
+<section class="bg03">
+	<hr class="bg03-hr">
+	<div class="bg03-01">
+		<form method="post" action="{% url 'accounts:signup' %}">
+			{% csrf_token %}
+			<div class="bg03-02">
+				<label for="username">사용자 ID</label>
+				<input type="text" class="bg03-02-input" name="username" id="username"
+					value="{{ form.username.value|default_if_none:'' }}" />
+				{% if form_errors.username %}
+				<div class="alert alert-danger">
+					{% for error in form_errors.username %}
+					<span>{{ error }}</span>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+			<div class="bg03-02">
+				<label for="password1">비밀번호</label>
+				<input type="password" class="bg03-02-input" name="password1" id="password1"
+					value="{{ form.password1.value|default_if_none:'' }}" />
+			</div>
+			<div class="bg03-02">
+				<label for="password2">비밀번호 확인</label>
+				<input type="password" class="bg03-02-input" name="password2" id="password2"
+					value="{{ form.password2.value|default_if_none:'' }}" />
+				{% if form_errors.password2 %}
+				<div class="alert alert-danger">
+					{% for error in form_errors.password2 %}
+					<span>{{ error }}</span>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+			<div class="bg03-02">
+				<label for="email">이메일</label>
+				<input type="text" class="bg03-02-input" name="email" id="email"
+					value="{{ form.email.value|default_if_none:'' }}" />
+				{% if form_errors.email %}
+				<div class="alert alert-danger">
+					{% for error in form_errors.email %}
+					<span>{{ error }}</span>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+			<div class="bg03-02">
+        <label for="phone">휴대전화</label>
+        <input
+          type="text"
+          class="bg03-02-input"
+          name="phone"
+          id="phone"
+          {% if verified_phone %}
+          value="{{ verified_phone }}"
+          {% else %}
+          value="{{ form.phone.value|default_if_none:'' }}"
+          {% endif %}
+          readonly
+        />
+        {% if form_errors.phone %}
+        <div class="alert alert-danger">
+          {% for error in form_errors.phone %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="mb-3">
+          <a href="{% url 'accounts:phone_verification' %}" onclick="openPopup.call(this, event)">휴대전화 인증하기</a>
+        </div>
+				<div class="bg03-02">
+					<label for="birthdate">생일</label>
+					<input type="date" class="bg03-02-input" name="birthdate" id="birthdate"
+						value="{{ form.birthdate.value|default_if_none:'' }}" />
+				</div>
+				<div class="bg03-02">
+					<label for="first_name">이름</label>
+					<input type="text" class="bg03-02-input" name="first_name" id="first_name"
+						value="{{ form.first_name.value|default_if_none:'' }}" />
+				</div>
+				<div class="form-submit">
+					<button type="submit">가입하기</button>
+				</div>
+		</form>
+	</div>
+	<p>계정이 이미 있으신가요? <a href="{% url 'login' %}">login</a></p>
+	<hr class="bg03-hr">
+</section>
+
+<script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>웹 페이지의 구성 요소</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/sign.css' %}"> 
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var container = document.querySelector('.container');
+        var nav = document.querySelector('nav');
+
+        container.addEventListener('mouseenter', function () {
+            nav.classList.add('nav-hover');
+        });
+
+        container.addEventListener('mouseleave', function () {
+            nav.classList.remove('nav-hover');
+        });
+    });
+</script>
+<script src="sign.js"></script>
+</head>
+<body>
+  <div id="container01">
+    <nav class="nav scroll-hidden">
+      <ul class="menu">
+          <li>
+              <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li><a href="#">Service+</a>
+          <ul class="submenu">
+              <li><a href="{% url 'repair_cost:merge' %}">Repair Cost</a></li>
+              <li><a href="{% url 'fault_ratio:merge' %}">Fault Ratio</a></li>
+          </ul></li>
+          <li><a href="#">Support+</a>
+              <ul class="submenu">
+                  <li><a href="{% url 'post:index' %}">Post Board</a></li>
+                  <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              </ul></li>
+          <li>{% if user.is_authenticated %}<li><a href="{% url 'logout' %}">Logout</a></li>{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+      </ul>
+    </nav>
+  </div>
+<section class = bg01>
+<body>
+  <div class="container my-3">
+    <h2>회원가입</h2>
+    <form method="post" action="{% url 'accounts:signup' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username">사용자 ID</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          id="username"
+          value="{{ form.username.value|default_if_none:'' }}"
+        />
+        {% if form_errors.username %}
+        <div class="alert alert-danger">
+          {% for error in form_errors.username %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="mb-3">
+        <label for="password1">비밀번호</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password1"
+          id="password1"
+          value="{{ form.password1.value|default_if_none:'' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password2">비밀번호 확인</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password2"
+          id="password2"
+          value="{{ form.password2.value|default_if_none:'' }}"
+        />
+        {% if form_errors.password2 %}
+        <div class="alert alert-danger">
+          {% for error in form_errors.password2 %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="mb-3">
+        <label for="email">이메일</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          value="{{ form.email.value|default_if_none:'' }}"
+        />
+        {% if form_errors.email %}
+        <div class="alert alert-danger">
+          {% for error in form_errors.email %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="mb-9">
+        <label for="phone">휴대전화</label>
+        <input
+          type="text"
+          class="form-control"
+          name="phone"
+          id="phone"
+          {% if verified_phone %}
+          value="{{ verified_phone }}"
+          {% else %}
+          value="{{ form.phone.value|default_if_none:'' }}"
+          {% endif %}
+          readonly
+        />
+        {% if form_errors.phone %}
+        <div class="alert alert-danger">
+          {% for error in form_errors.phone %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="mb-3">
+          <a href="{% url 'accounts:phone_verification' %}" onclick="openPopup.call(this, event)">휴대전화 인증하기</a>
+        </div>
+      <div class="mb-3">
+        <label for="birthdate">생일</label>
+        <input
+          type="date"
+          class="form-control"
+          name="birthdate"
+          id="birthdate"
+          value="{{ form.birthdate.value|default_if_none:'' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="first_name">이름</label>
+        <input
+          type="text"
+          class="form-control"
+          name="first_name"
+          id="first_name"
+          value="{{ form.first_name.value|default_if_none:'' }}"
+        />
+      </div>
+      <div class="form-submit">
+        <button type="submit">가입하기</button>
+      </div>
+    </form>
+<p>계정이 이미 있으신가요? <a href="login.html">login</a></p>
+</div>
+</body>
+</section>
+
+<script>
+function openPopup(event) {
+  event.preventDefault();
+
+  var popupURL = this.getAttribute('href');
+
+  var width = 720;
+  var height = 170;
+  var left = (window.innerWidth - width) / 2;
+  var top = (window.innerHeight - height) / 2;
+
+  window.open(popupURL, '인증 팝업', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+}
+</script> -->

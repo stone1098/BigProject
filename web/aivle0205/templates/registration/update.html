@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/update.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
+<section>
+	<div class="container01">
+		<div id="title">UPDATE</div>
+	</div>
+</section>
+<section class="bg03">
+	<hr class="bg03-hr">
+	<div class="bg03-01">
+    <form method="post",action="{% url 'accounts:update' %}">
+      {% csrf_token %}
+      <div class="bg03-02">
+        <label for="{{ form.username.id_for_label }}">사용자 ID:</label>
+        <input type="text" class="bg03-02-input" name="username" value="{{ request.user.username }}" required placeholder="{{ reqeust.user.username }}">
+        {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="fbg03-02">
+        <label for="{{ form.email.id_for_label }}">이메일:</label>
+        <input type="email" class="bg03-02-input" name="email" value="{{ request.user.email }}" required placeholder="{{ request.user.email }}">
+        {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="bg03-02">
+        <label for="{{ form.phone_number.id_for_label }}">휴대전화:</label>
+        <input type="text" class="bg03-02-input" value="{{ request.user.phone }}" readonly>
+      </div>
+      <div class="bg03-02">
+        <label for="{{ form.birthdate.id_for_label }}">생년월일:</label>
+        <input type="date" class="bg03-02-input" name="birthdate" value="{{ request.user.birthdate|date:'Y-m-d' }}" required placeholder="{{ request.user.birthdate|date:'Y-m-d' }}">
+      </div>
+      <div class="bg03-02">
+        <label for="{{ form.password1.id_for_label }}">비밀번호:</label>
+        <input type="password" class="bg03-02-input" name="password1" value="" required placeholder="비밀번호">
+      </div>
+      <div class="bg03-02">
+        <label for="{{ form.password2.id_for_label }}">비밀번호 확인:</label>
+        <input type="password" class="bg03-02-input" name="password2" value="" required placeholder="비밀번호 확인">
+        {% if form.errors.password2 %}
+        <div class="alert alert-danger">
+          {% for error in form.errors.password2 %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="bg03-02">
+        <label for="{{ form.first_name.id_for_label }}">이름:</label>
+        <input type="text" class="bg03-02-input" value="{{ request.user.first_name }}" readonly>
+      </div>
+      <div class ='but'>
+          <button type="submit">정보수정</button>
+        </form>
+      </div>
+      <div class ='but'>
+        <form method="post" action="{% url 'accounts:delete' %}" onsubmit="return confirm('정말로 회원을 탈퇴하시겠습니까?');">
+          {% csrf_token %}
+          <button type="submit" >회원탈퇴</button>
+        </form>
+      </div>
+  </section>
+  {% endblock %}

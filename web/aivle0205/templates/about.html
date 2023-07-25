@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>about us</title>
+<link href="{% static 'css/about.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="{% static 'js/nav.js' %}"></script>
+</head>
+<body>
+    <!-- 네비바 -->
+    <nav class="nav scroll-hidden">
+      <ul class="menu">
+        <li>
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li><a href="#" onClick="jumpToID(event, 'service')">Service+</a>
+          <ul class="submenu">
+            <li><a href="{% url 'repair_cost:index' %}">Repair Cost</a></li>
+            <li><a href="{% url 'fault_ratio:index' %}">Fault Ratio</a></li>
+          </ul>
+        </li>
+        <li><a href="#" onClick="jumpToID(event, 'support')">Support+</a>
+          <ul class="submenu">
+            <li><a href="{% url 'post:index' %}">Post Board</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </li>
+        {% if user.is_authenticated %}
+        <li><a href="#" onClick="jumpToID(event, 'support')">Login</a>
+          <ul class="submenu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'accounts:update' %}">update</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>{% endif %}</li>
+        
+        <li><a href="{% url 'about' %}">About Us</a></li>
+      </ul>
+    </nav>
+
+    <main>
+        <section class="bg01">
+            <div class="container01"></div>
+            <div class="container01">
+                <div>
+                    <div id="title" style="text-align: center;">
+                        "SURISURI CARSURI"
+                    </div>
+                    <div class="spacer"></div>
+                    <div id="team-title">
+                        TEAM
+                    </div>
+                </div>
+            </div>
+            <div class="container01"></div>
+        </section>
+    </main>
+</body>
+
+
+<!--프로필 시작-->
+<section class="profile-section">
+  <div class="profile-container">
+    <div class="profile-row">
+      <div class="profile-item" onclick="showProfilePopup('차승현', '{% static 'image/profile/승현님.png' %}', 'AI');">
+        <div class="profile-info">
+          <img src="{% static 'image/profile/승현님.png' %}" alt="차승현">
+          <div class="profile-name">차승현</div>
+        </div>
+      </div>
+      <div class="profile-item" onclick="showProfilePopup('신원석', '{% static 'image/profile/원석님.png' %}', 'AI&Backend')">
+        <div class="profile-info">
+          <img src="{% static 'image/profile/원석님.png' %}" alt="신원석">
+            <div class="profile-name">신원석</div>
+        </div>
+      </div>
+      <div class="profile-item" onclick="showProfilePopup('이동우', '{% static 'image/profile/동우님.png' %}', 'Frontend')">
+              <div class="profile-info">
+                <img src="{% static 'image/profile/동우님.png' %}" alt="이동우">
+                <div class="profile-name">이동우</div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-item" onclick="showProfilePopup('김석원', '{% static 'image/profile/석원님.png' %}', 'Backend')">
+              <div class="profile-info">
+                <img src="{% static 'image/profile/석원님.png' %}" alt="김석원">
+                <div class="profile-name">김석원</div>
+              </div>
+            </div>
+            <div class="profile-item" onclick="showProfilePopup('박준수', '{% static 'image/profile/준수님.png' %}', 'Backend&AI')">
+              <div class="profile-info">
+                <img src="{% static 'image/profile/준수님.png' %}" alt="박준수">
+                <div class="profile-name">박준수</div>
+              </div>
+            </div>
+            <div class="profile-item" onclick="showProfilePopup('김창현', '{% static 'image/profile/창현님.png' %}', 'Frontend')">
+              <div class="profile-info">
+                <img src="{% static 'image/profile/창현님.png' %}" alt="김창현">
+                <div class="profile-name">김창현</div>
+              </div>
+            </div>
+            <div class="profile-item" onclick="showProfilePopup('김현아', '{% static 'image/profile/김현아.png' %}', 'Frontend')">
+              <div class="profile-info">
+                <img src="{% static 'image/profile/김현아.png' %}" alt="김현아">
+                <div class="profile-name">김현아</div>
+              </div>
+            </div>
+          </div>
+        </div>
+</section>
+<!-- 프로필 사진 칸 끝 -->
+
+<!-- 팝업 시작 -->
+<div class="modal-wrapper">
+    <div class="modal modal-right">
+      <div class="head">
+        <a class="btn-close trigger" href="#">
+          <span class="close-icon">X</span>
+        </a>
+      </div>
+      <div class="content">
+        <div class="profile-info">
+          <img src="" alt="프로필 이미지" id="popup-profile-image">
+          <div class="profile-name" id="popup-profile-name"></div>
+          <div class="profile-description" id="popup-profile-description"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- 팝업 끝 -->
+ <!--############## footer ###############-->
+ <footer class="bg04" id="footer">
+		
+  <div id="bg04-02">AIVLE SCHOOL</div>
+  <hr id="bg04-03-hr">
+
+  <div class="bg04-03">
+      <ul>
+          <li>
+              <!--###### 이용약관 ######-->
+              <a href="{% url 'test' %}" onclick="goPrivacy(event)" class = "bg04-03-li">개인정보 처리방침 이용약관</a>
+              <script>
+                  function goPrivacy(event) {
+                      event.preventDefault();  // 링크 클릭 시 기본 동작(페이지 이동)을 막음
+                      // 팝업 창 열기
+                      window.open('/test/', '_blank', 'width=600,height=500,scrollbars=yes');
+                  }
+              </script>
+              <!--##############-->
+          </li>
+          <li><a href="{% url 'contact' %}" class="bg04-03-li">Contact Us</a></li>
+          <li><a href="{% url 'about' %}" class="bg04-03-li">About Us</li>
+      </ul>
+  </div>
+  <footer class="bg04-04">
+      <div id="bg04-04-01"></div>
+      <div class="bg04-04-01">Copyright 2023 AIVLE 2-5.</div>
+  </footer>
+</footer>
+</main>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var scrollPosition = 0;
+
+    function showProfilePopup(name, imageSrc, description) {
+      // 스크롤 위치 저장
+      scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+      // 프로필 정보를 팝업에 표시하는 함수
+      document.getElementById("popup-profile-image").src = imageSrc;
+      document.getElementById("popup-profile-name").innerText = name;
+      document.getElementById("popup-profile-description").innerText = description;
+
+      // 팝업을 보여주는 동작
+      document.querySelector('.modal-wrapper').classList.add('open');
+      document.querySelector('.page-wrapper').classList.add('blur-it');
+
+      // 페이지 스크롤 방지
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 팝업 닫기 버튼 동작
+    document.querySelector('.btn-close').addEventListener('click', function() {
+      document.querySelector('.modal-wrapper').classList.remove('open');
+      document.querySelector('.page-wrapper').classList.remove('blur-it');
+
+      // 페이지 스크롤 허용
+      document.body.style.overflow = 'auto';
+
+      // 이전 스크롤 위치로 스크롤 이동
+      window.scrollTo(0, scrollPosition);
+    });
+</script>
+</body>
+</html>

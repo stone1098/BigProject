@@ -1,0 +1,324 @@
+@font-face {
+  font-family: 'Jonkey One';
+  src: url('../font/Jockeyone.ttf') format('truetype');
+}@font-face {
+  font-family: 'Jeju Gothic';
+  src: url('../font/JejuGothic.ttf') format('truetype');
+}
+body{
+  margin: 0;
+}
+:root {
+  --base-font-family: 'Jeju Gothic';
+  --title-font-family: 'Jockey One';
+
+  --nav-default-bg: #003702;
+  --nav-default-font: #CDE1CF;
+  --nav-shrink-bg: #003702;
+  --nav-shrink-font: #CDE1CF;
+  --nav-popup-bg: #002001;
+
+  --bs-primary-rgb: 0, 55, 2;
+  /* #003702 */
+  --bs-primary-text: #CDE1CF;
+  --bs-light-rgb: 205, 225, 207;
+  /* #CDE1CF */
+  --bs-light-text: #003702;
+
+  --font-hover-rgb: 0, 55, 2;
+  /* #003702 */
+
+  --bs-nav-height: 5vh;
+
+  --lightgreen : #003702;
+  --green : #CDE1CF;
+  --darkgreen : #002001;
+  --lightviolet : #D686CE;
+}
+
+/*네비바 부분*/
+nav{
+  z-index: 99;
+  height: 5vh;
+  width: 100%;
+  position: fixed;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.menu {
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: Jonkey One;
+}
+.menu > li {
+  width: 20%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: #002001;
+}
+
+.menu a {
+  color: #CDE1CF;
+}
+
+.submenu > li {
+  line-height: 50px;
+  background-color: #003702;
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+  margin-right: 2em;
+}
+
+
+.menu > li:hover {
+  background-color: #003702;
+  transition-duration: 0.5s;
+  /* border-radius: 10px; */
+}
+.menu > li:hover .submenu li:hover{
+  background-color: #002001;
+  border-radius: 10px;
+}
+.menu > li:hover .submenu {
+  height: 110px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 0.7s;
+}
+/*######################################*/
+.bg01 {
+    background-color: #CDE1CF;
+}
+
+#title {
+    color: #003702;
+    font-size: 70px;
+    font-weight: bold;
+    margin-top: 150px;
+}
+
+#subtitle {
+    color: #003702;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.container01 {
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    background-color:#CDE1CF;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    padding: 20px;
+}
+
+#form {
+    margin-top:20px;
+}
+
+.form-field {
+    margin-bottom: 25px;
+    margin-top: 15px;
+    color: #003702;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 20%;
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+  font-family: Jeju Gothic;
+    border-bottom: 2px solid #003702;
+    background-color: transparent;
+}
+
+.form-textarea {
+    width:100%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 5px solid #003702;
+    resize: vertical;
+    background-color: #FFFCF0;
+    font-family: Jeju Gothic;
+    font-size: 20px;
+    color: #525E76;
+    width: 500px;
+    height: 150px;
+    resize: none;
+    float: center;
+    margin-top: 10px;
+    }
+
+.form-textarea-container::before {
+    content: '';
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    pointer-events:none;
+}
+.form-submit{
+  text-align: left;
+}
+.form-submit button {
+    padding: 10px 20px;
+    background-color: #CDE1CF;
+    color: #003702;
+    font-weight: bold;
+    font-size: 30px;
+    border:3px solid #003702;;
+    margin-top:10px;
+    border-radius: 20px;
+    cursor:pointer;
+    width: 20%;
+
+}
+.form-submit button:hover {
+    background-color: #003702;
+    border: 3px solid #003702;
+    color: #CDE1CF;
+}
+
+.bg01 {
+    display:flex;
+    height:120vh;
+}
+
+.bg01 .left-section {
+    width: 70%;
+    background-color: #CDE1CF;
+    height: 100%;
+    margin-left: 15%;
+}
+
+.bg01 .right-section {
+    width: 30%;
+    height: 100%;
+    background-color: #003702;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.address-title {
+    color: #CDE1CF;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Jeju Gothic;
+}
+
+.address-description {
+    color: #CDE1CF;
+    font-size: 20px;
+    font-weight:  bold;
+}
+/*################ footer ##################*/
+/*footer부분*/
+.bg04 {
+  background-color: var(--lightgreen);
+  color: var(--green);
+  font-family: Jeju Gothic;
+  width: 100%;
+
+}
+
+#bg04-01 {
+  height: 50px;
+}
+
+#bg04-01-01 {
+  border-color: var(--green);
+}
+
+#bg04-02 {
+  margin-top: 0%;
+  margin-left: 20%;
+  font-family: Jonkey One;
+  font-size: 100px;
+  font-weight: bold;
+}
+#bg04-03-hr{
+  border: 1px solid var(--green);
+  width: 60%;
+  background-color: var(--lightgreen);
+}
+/*###############################*/
+.bg04-02 {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg04-02 .bg04-02-img {
+  padding: 2px;
+}
+
+/*###############################*/
+.bg04-03{
+  margin-left: 18%;
+}
+.bg04 .bg04-03 {
+  display: flex;
+}
+
+.bg04 .bg04-03 ul {
+  list-style: none;
+}
+
+.bg04 #bg04-03-01 {
+  width: 70%;
+}
+
+.bg04 .bg04-03-01 {
+  float: right;
+  width: 15%;
+  text-align: left;
+}
+
+.bg04 .bg04-03-01 li {
+  padding-top: 3px;
+}
+
+.bg04-04 {
+  width: 100%;
+  display: flex;
+}
+
+.bg04-04 #bg04-04-01 {
+  width: 68%;
+}
+
+.bg04-04 .bg04-04-01 {
+  text-align: left;
+  width: 32%;
+}
+.bg04-03-li{
+  font-family: Jeju Gothic;
+  color: var(--green);
+}
+.bg04-03-li:visited{
+  color: var(--green);
+}
+.bg04-03-li:hover{
+  color:var(--lightviolet);
+}
+.bg04-03 >ul{
+  display: flex;
+}
+.bg04-03>ul li{
+  margin-right: 1em;
+}

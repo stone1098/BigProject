@@ -1,0 +1,20 @@
+<h1> Web <-> DB, 박준수 짱 </h1>
+<h1> Input </h1>
+
+
+<form action="{% url 'repair_cost:image_upload' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{forms.as_p}}
+    <input type="submit" value="to DB">
+    {% if result %}
+    <h3>Succesfully Predicted</h3>
+    <h3>{{result.cost}}</h3>
+    {% endif %}
+</form>
+
+
+<!-- Location : <input type="text" name="Location", id="Location"><br/> 
+    Car Company : <input type="text" name="Car_Company", id="Car_Company"><br/> 
+    Car Type : <input type="text" name="Car_Type", id="Car_Type"><br/> 
+    Car Year : <input type="text" name="Car_Year", id="Car_Year"><br/> 
+    Image : <input type="file" id="image" name="image" accept="image/*" onchange="loadFile(this)"> -->

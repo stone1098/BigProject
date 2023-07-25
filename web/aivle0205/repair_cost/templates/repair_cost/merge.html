@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link href="{% static 'css/dw_repair_cost.css' %}" rel="stylesheet" type="text/css">
+<section class="'bg01">
+    <div class="container01">
+        <img class="bg-cover" src="{%static 'assets/images/repair01_black.jpg' %}">
+            <div class="contatiner-right">
+                <div id="bg01-title">
+                    Repair Cost
+                </div>
+                <div id="bg01-text">
+                    Upload an image of the damage to your car and the AI will calculate the cost of repair.
+                </div>
+            </div>
+    </div>
+</section><!--과실 비율을 출력-->
+<!--#############################################-->
+<form {% if user.is_authenticated %} action="{% url 'repair_cost:index' %}" {% endif %} method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<!-- requset에서 dict형태의 이름은 name으로 정해진다. -->
+<section class="bg03">
+<div class="bg03-00"></div>
+    <div class="bg03-01">
+        <ul>   
+            <li><label for="car_company" class="form-label">Car Company</label>
+                <select class="form-control" name="car_company" id="car_company">
+                    <option value="현대">현대</option>
+                </select>
+            </li>
+            <li><label for="car_type" class="form-label">Car Type</label>
+                <select class="form-control" name="car_type" id="car_type">
+                    <option value="아반떼">아반떼</option>
+                    <option value="쏘나타">쏘나타</option>
+                    <option value="그랜저">그랜저</option>
+                    <option value="코나">코나</option>
+                    <option value="투싼">투싼</option>
+                    <option value="싼타페">싼타페</option>
+                    <option value="스타렉스">스타렉스</option>
+                </select>
+            </li>
+            <li><label for="car_year" class="form-label">Car Year</label>
+                <select class="form-control" name="car_year" id="car_year">
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
+            </li>
+            <li id="bg03-01-li-submit"><input id="bg03-01-submit" type="submit" value="예측"  {% if user.is_anonymous %}onclick="myFunction('로그인 후 이용하세요!')"{% endif %}></li>
+        </ul>
+    </div>
+    <div class="bg03-01-01"></div>
+    <div class="bg03-02"> 
+        <div class="bg03-02-outer">
+            <label for="file">
+                <div class="bg03-02-inner">
+                    <img class="btn-upload" src="{% static 'assets/images/cross2.png'%}">
+                    <img id="bg03-02-preview">
+                </div>
+            </label>
+                <!-- 폼 전송 버튼 -->
+              <input type="file" name="img" id="file" onchange="showImg(this);" accept="image/png, image/jpeg, image/gif, image/jpg">
+              <!-- name은 img로 !! -->
+        </div>
+    </div>
+    <div class="bg03-03"></div>
+</section><!--사고 경위서 입력받는 텍스트 상자-->
+</form>
+
+<section class="bg03">
+<div class="bg03-00"></div>
+    <div class="bg03-01" id = "bg03-01-resultbox">
+        <div class="bg03-01-resultbox-left">
+            <ul id="bg03-01-ul">   
+                <li>차량 브랜드 : 
+                    <span class = "bg03-01-select">{{ carImageOutput.car_company }}</span>
+                </li>
+                <li>차량 종류 : 
+                    <span class = "bg03-01-select">{{ carImageOutput.car_type }}</span>
+                </li>
+                <li>차량 연식 : 
+                    <span class = "bg03-01-select">{{ carImageOutput.car_year }}</span>
+                </li>
+                <li>파손 부위 : 
+                    <span class = "bg03-01-select">{{ parts }}</span>
+                </li>
+                <hr id="bg03-01-select-hr">
+                <li id="bg03-01-result">예상 견적 : 
+                    <span class = "bg03-01-select">{{ cost }}원</span>
+                </li>
+            </ul>
+        </div>
+        <div class="bg03-01-resultbox-right">
+            <div id="bg03-01-resultbox-img">
+                {% if carImageOutput.result_img %}
+                    <img id="bg03-preview" src="{{carImageOutput.result_img.url}}">
+                {% else%}
+                    <img id="bg03-preview">
+                {% endif %}
+            </div>    
+        <div>
+    </div>
+    <div class="bg03-01-01" id="bg03-01-01-v2"></div>
+</section><!--사고 경위서 입력받는 텍스트 상자-->
+
+<script src="{% static 'js/repair_cost.js' %}"></script>
+{% endblock %}

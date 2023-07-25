@@ -1,0 +1,21 @@
+<form method="post" action="{% url 'logout' %}">
+<h1>메인</h1>
+
+<ul>
+  <li><a href="{% url 'main' %}">홈</a></li>
+  <!-- 기타 메뉴 항목 -->
+  {% if user.is_authenticated %}
+    <li><a href="{% url 'accounts:update' %}">회원 정보 수정</a></li>
+    <li>
+      <p>{{ user.username }} 님 환영합니다.</p>
+        {% csrf_token %}
+        <button type="submit" value='logout'>로그아웃</button>  <!-- 로그아웃 버튼 -->
+      </form>
+    </li>
+    <li><a href="{% url 'post:index' %}">게시판</a></li>
+  {% else %}
+    <li><a href="{% url 'login' %}">로그인</a></li>  <!-- 로그인 버튼 -->
+    <li><a href="{% url 'accounts:signup' %}">회원가입</a></li>
+    <li><a href="{% url 'post:index' %}">게시판</a></li>
+  {% endif %}
+</ul>

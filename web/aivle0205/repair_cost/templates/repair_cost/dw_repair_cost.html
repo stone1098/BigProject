@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repair Coats</title>
+<link href="{%static 'css/dw_repair_cost.css' %}" rel="stylesheet" type="text/css">
+<script>
+    var container = document.querySelector('.container');
+    var nav = document.querySelector('nav');
+
+    container.addEventListener('mouseenter', function () {
+        nav.classList.add('nav-hover');
+    });
+
+    container.addEventListener('mouseleave', function () {
+        nav.classList.remove('nav-hover');
+    });
+
+    function showImg(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            document.getElementById('bg03-02-preview').src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          document.getElementById('bg03-02-preview').src = "";
+        }
+    };
+</script>
+</head>
+<body>
+<div id="container01">
+<!--#############################################-->
+<nav class="nav scroll-hidden">
+<ul class="menu">
+    <li>
+        <a href="#">Home</a>
+    </li>
+    <li><a href="#">Service+</a>
+    <ul class="submenu">
+        <li><a href="#">Repair Cost</a></li>
+        <li><a href="#">Fault Ratio</a></li>
+    </ul></li>
+    <li><a href="#">Support+</a>
+        <ul class="submenu">
+            <li><a href="#">Post Board</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul></li>
+    <li><a href="#">Login</a></li>
+    <li><a href="#">About Us</a></li>
+</ul>
+</nav>
+<!--#############################################-->
+
+<main>
+<section class="'bg01">
+    <div class="container01"></div>
+    <div class="container01">
+        <div>
+            <div id="title">
+                "Repair Cost"
+            </div>
+        </div>
+    </div>
+    <div class="container01"></div>
+</section><!--과실 비율을 출력-->
+
+<section class="bg02">
+    <!-- <div class="container02"></div> -->
+    <div class="container02">
+        <div class="bg02-text">
+            Enter a simple accident report, and the AI will estimate 
+            the likely percentage of fault based on past verdicts.
+        </div>
+    </div>
+    <!-- <div class="container02"></div> -->
+</section><!--간단 설명-->
+<!--#############################################-->
+<section class="bg03">
+    <div class="bg03-00"></div>
+    <div class="bg03-01">
+        <ul>
+            <li>location
+                <select name="location">
+                    <option value="">1</option>
+                    <option value="학생">2</option>
+                    <option value="회사원">3</option>
+                    <option value="기타">4</option>
+            </select></li>
+            <li>brand
+                <select name="brand">
+                    <option value="">1</option>
+                    <option value="학생">2</option>
+                    <option value="회사원">3</option>
+                    <option value="기타">4</option>
+            </select></li>
+            <li>type
+                <select name="type">
+                    <option value="">1</option>
+                    <option value="학생">2</option>
+                    <option value="회사원">3</option>
+                    <option value="기타">4</option>
+                </select>
+            </li>
+            <li>year
+                <select name="year">
+                    <option value="">1</option>
+                    <option value="학생">2</option>
+                    <option value="회사원">3</option>
+                    <option value="기타">4</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div class="bg03-02"> 
+        <div class="bg03-02-preview">
+            <label for="file">
+                <div>
+                    <img class="btn-upload" src="{% static 'assets/images/cross.png' %}">
+                    <img id="bg03-02-preview">
+                </div>
+            </label>
+              <input type="file" name="file" id="file" onchange="showImg(this);" accept="image/png, image/jpeg, image/gif, image/jpg">
+            
+        </div>
+    </div>
+
+</section><!--사고 경위서 입력받는 텍스트 상자-->
+</main>
+<!--#############################################-->
+<footer class="bg04">
+    <div id="bg04-01"></div>
+    <header>sign up for our service</header>
+    <hr id="bg04-01-01">
+    <div id="bg04-02">AIVLE SCHOOL</div>
+
+    <div class="bg04-02">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class = 'bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+    </div>
+
+        <div class = "bg04-03">
+            <div id="bg04-03-01"></div>
+            <div class="bg04-03-01">
+                <ul>
+                    <li><a class = 'nav-link' href = '/'>Home</a></li>
+                    <li>Repair Cost</li>
+                    <li>Fault Ratio</li>
+                </ul>
+            </div>
+
+            <div  class="bg04-03-01">
+                <ul>
+                    <li>Bulletin Board</li>
+                    <li>Contact Us</li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+    </div>   
+    <footer class="bg04-04">
+        <div id="bg04-04-01"></div>
+        <div class="bg04-04-01">Copyright 2023 AIVLE 2-5.</div>
+    </footer>
+</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+
+<script>
+    var container = document.querySelector('.container');
+    var nav = document.querySelector('nav');
+
+    container.addEventListener('mouseenter', function () {
+        nav.classList.add('nav-hover');
+    });
+
+    container.addEventListener('mouseleave', function () {
+        nav.classList.remove('nav-hover');
+    });
+</script>
+</head>
+<body>
+<div id="container01">
+<!--#############################################-->
+<nav class="nav scroll-hidden">
+<ul class="menu">
+    <li>
+        <a href="{% url 'index' %}">Home</a>
+    </li>
+    <li><a href="#">Service+</a>
+    <ul class="submenu">
+      <li><a href="{% url 'repair_cost:index' %}">Repair Cost</a></li>
+      <li><a href="{% url 'fault_ratio:index' %}">Fault Ratio</a></li>
+    </ul></li>
+    <li><a href="#">Support+</a>
+        <ul class="submenu">
+            <li><a href="{% url 'post:index' %}">Post Board</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        </ul></li>
+        {% if user.is_authenticated %}
+        <li><a href="#" onClick="jumpToID(event, 'support')">account</a>
+          <ul class="submenu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'accounts:update' %}">update</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>{% endif %}</li>
+    <li><a href="{% url 'about' %}">About Us</a></li>
+</ul>
+</nav>
+<!--#############################################-->
+
+<main>
+<section class="'bg01">
+    <div class="container01">
+            <div id="title">
+                Login
+            </div>
+            {% if messages %}
+              <div id="message-container">
+                  {% for message in messages %}
+                  <div class="message" style="color: green;">{{ message }}</div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+    </div>
+    
+</section>
+<!--#############################################-->
+<section class="bg03">
+<hr class="bg03-hr">
+    <div class="bg03-01">
+      <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+        <div class="bg03-02">
+          <label for="{{ form.username.id_for_label }}"></label>
+          <input class="bg03-02-input" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder='email adress / id'>
+        </div>
+        <div class="bg03-02">
+          <label for="{{ form.password.pw_for_label }}"></label>
+          <input class="bg03-02-input" type="password" id="{{ form.password.pw_for_label }}" name="{{ form.password.html_name}}"  placeholder="password">
+        </div>
+
+        <input type="submit" value="Log in" class="bg03-btn" onclick="location.href='{% url 'index' %}'"> <br>
+        </form>
+
+        {% if form.errors %}
+          <p>사용자 이름과 비밀번호가 일치하지 않습니다. 다시 시도하세요.</p>
+        {% endif %}
+
+        <a href="{% url 'accounts:signup' %}">회원가입</a>
+        <a href="{% url 'password_reset' %}">비밀번호 찾기</a>
+
+        <hr class="bg03-hr-01">
+
+        <span id="bg03-sns-text">-sns로 로그인하기-</span>
+
+        <div class="bg03-sns">
+          {% load socialaccount %}
+          <a href="{% provider_login_url 'google' %}">
+            <input class="bg03-sns-img" type="image" value='login' src="{%static 'assets/google.png' %}" alt="구글 로그인">
+          </a>
+          {% load socialaccount %}
+          <a href="{% provider_login_url 'naver' %}">
+            <input class="bg03-sns-img" type="image" value='login' src="{%static 'assets/naver.png' %}" alt="네이버 로그인">
+          </a>
+        </div>
+    </div>
+<hr class="bg03-hr">
+</section>
+</main>
+<!--#############################################-->
+<footer class="bg04" id="footer">
+		
+  <div id="bg04-02">AIVLE SCHOOL</div>
+
+    {% comment %} <div class="bg04-02">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+        <img class='bg04-02 bg04-02-img' src="{% static 'assets/images/black5.jpg' %}">
+    </div> {% endcomment %}
+    <hr id="bg04-03-hr">
+
+  <div class="bg04-03">
+    <ul>
+      <li>
+        <!--###### 이용약관 ######-->
+        <a href="{% url 'test' %}" onclick="goPrivacy(event)" class = "bg04-03-li">개인정보 처리방침 이용약관</a>
+        <script>
+          function goPrivacy(event) {
+            event.preventDefault();  // 링크 클릭 시 기본 동작(페이지 이동)을 막음
+            // 팝업 창 열기
+            window.open('/test/', '_blank', 'width=600,height=500,scrollbars=yes');
+          }
+        </script>
+        <!--##############-->
+      </li>
+      <li><a href="{% url 'contact' %}" class="bg04-03-li">Contact Us</a></li>
+      <li><a href="{% url 'about' %}" class="bg04-03-li">About Us</li>
+    </ul>
+  </div>
+  <footer class="bg04-04">
+    <div id="bg04-04-01"></div>
+    <div class="bg04-04-01">Copyright 2023 AIVLE 2-5.</div>
+  </footer>
+</footer>
+</div>
+</body>
+</html>
+
+{% comment %} <form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.password.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </tr>
+  </table>
+  <input type="submit" value="login" onclick="location.href='{% url 'index' %}'">
+</form>
+{% if form.errors %}
+  <p>사용자 이름과 비밀번호가 일치하지 않습니다. 다시 시도하세요.</p>
+{% endif %}
+<p><a href="{% url 'password_reset' %}">비밀번호 찾기</a></p>
+{% load socialaccount %}
+<a href="{% provider_login_url 'naver' %}">
+<button type="submit" value='login'>네이버 로그인</button>
+</a>
+{% load socialaccount %}
+<a href="{% provider_login_url 'google' %}">
+  <button type="submit" value='login'>구글 로그인</button>
+  </a> {% endcomment %}

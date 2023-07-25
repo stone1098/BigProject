@@ -1,0 +1,348 @@
+@font-face {
+    font-family: 'Jonkey One';
+    src: url('../css/font/Jockeyone.ttf') format('truetype');
+}@font-face {
+    font-family: 'Jeju Gothic';
+    src: url('../css/font/JejuGothic.ttf') format('truetype');
+}
+:root{
+    --base-font-family: 'Jeju Gothic';
+    --title-font-family: 'Jonckey One';
+  
+    --lightgreen : #003702;
+    --green : #CDE1CF;
+    --darkgreen : #002001;
+    --lightviolet : #D686CE;
+    --lightgray: #B5B5B5;
+  }
+
+body, html{
+    /* height: 100%; */
+    margin: 0;
+    padding: 0;
+    background-color: #003702;
+}
+#container01{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
+}
+
+/*###########################################*/
+/*네비바 부분*/
+nav{
+  z-index: 99;
+  height: 5vh;
+  width: 100%;
+  position: fixed;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.menu {
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: Jonkey One;
+}
+.menu > li {
+  width: 20%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: #002001;
+}
+
+.menu a {
+  color: #CDE1CF;
+}
+
+.submenu > li {
+  line-height: 50px;
+  background-color: #003702;
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+  margin-right: 2em;
+}
+
+
+.menu > li:hover {
+  background-color: #003702;
+  transition-duration: 0.5s;
+  /* border-radius: 10px; */
+}
+.menu > li:hover .submenu li:hover{
+  background-color: #002001;
+  border-radius: 10px;
+}
+.menu > li:hover .submenu {
+  height: 110px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 0.7s;
+}
+/*######################################*/
+/* .bg01{
+    position: relative;
+} */
+.bg02{
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    height: 30%;
+    position: relative;
+}
+.bg02 .bg02-left{
+    z-index: 1;
+    width: 50%;
+}
+.bg02-box01{
+    border: 3px solid #CDE1CF;
+    font-family: Jeju Gothic;
+    color: #CDE1CF;
+    text-align: left;
+    position: absolute;
+    padding: 2em;
+
+    top: 12em;
+    right: 3em;
+    bottom: 0;
+    width: 400px;
+    height: 200px;
+}
+/* #bg02-title{
+    font-family: Jonkey one;
+    font-weight: 400;
+    font-size: 30px;
+} */
+#bg02-text{
+    font-size: small;
+}
+.bg02-box02{
+    border: 3px solid #CDE1CF;
+    font-family: Jeju Gothic;
+    color: #CDE1CF;
+    text-align: left;
+    position: absolute;
+    padding: 3px;
+
+    top: 12em;
+    right: 3em;
+    left: 2em;
+    bottom: 0;
+    width: 400px;
+    height: 260px;
+}
+#bg02-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*##########################*/
+.bg-cover{
+    opacity: 0.1;
+    width: 60%;
+    height: 60%;
+}
+.bg02 .bg02-right{
+    z-index: 1;
+    width: 50%;
+    height: 100%;
+}
+main{
+    flex-grow: 1;
+    /* overflow-y: auto; */
+}
+.bg02-01{
+    display: block;
+    z-index: 3;
+    position: absolute;
+    /* vertical-align: middle; */
+}
+#title{
+    font-size: 150px;
+    font-weight: 580;
+    font-family: Jonkey One;
+    color: #CDE1CF;
+    text-shadow: 0px 6px #D686CE;
+    padding-left: 150px;
+}
+/*#######################################*/
+/*테이블*/
+.bg2_5{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+.bg2_5-01{
+    width: 60%;
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+table {
+    width: 100%;
+    color: #CDE1CF;
+    border-top: 1px solid #CDE1CF;
+    border-collapse: collapse;
+    
+}
+th, td {
+border-bottom: 1px solid #CDE1CF;
+padding: 10px;
+text-align: center;
+}
+.bg2_5 a{
+  text-decoration: none;
+  color: #CDE1CF;
+}
+.bg2_5 a:visited{
+  text-decoration: none;
+  color: #CDE1CF;
+}
+
+/*#######################################*/
+.bg03{
+    /* height: 30%; */
+    width: 100%;    
+    /* display: flex;  */
+    /* justify-content: center; */
+    text-align: center;
+}
+.bg03-01{
+    /* justify-content: left; */
+    text-align: center;
+} 
+#bg03-comment{
+    color: #CDE1CF;
+    font-family: Jonkey One;
+    font-size: larger;
+}
+.bg03-textarea{
+    margin-bottom: 1em;
+    border: 3px solid #CDE1CF;
+    border-radius: 5px;
+    background-color: #003702;
+    color: #CDE1CF;
+    width: 60%;
+    height: 100px;
+}
+#bg03-submit{
+    width: 13%;
+    height: 2em;
+    color: #CDE1CF;
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 2em;
+    border: 2px solid #CDE1CF;
+    border-radius: 10px;
+    background-color: #003702;
+}
+#bg03-submit:hover{
+    color: #003702;
+    border: 2px solid #CDE1CF;
+    background-color: #CDE1CF;
+}
+/*#######################################*/
+/*footer부분*/
+.bg04 {
+  background-color: var(--green);
+  color: var(--lightgreen);
+  font-family: Jeju Gothic;
+  width: 100%;
+
+}
+
+#bg04-01 {
+  height: 50px;
+}
+
+#bg04-01-01 {
+  border-color: var(--lightgreen);
+}
+
+#bg04-02 {
+  margin-top: 0%;
+  margin-left: 20%;
+  font-family: Jonkey One;
+  font-size: 100px;
+  font-weight: bold;
+}
+#bg04-03-hr{
+  border: 1px solid var(--lightgreen);
+  width: 60%;
+  background-color: var(--green);
+}
+/*###############################*/
+.bg04-02 {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg04-02 .bg04-02-img {
+  padding: 2px;
+}
+
+/*###############################*/
+.bg04-03{
+  margin-left: 18%;
+}
+.bg04 .bg04-03 {
+  display: flex;
+}
+
+.bg04 .bg04-03 ul {
+  list-style: none;
+}
+
+.bg04 #bg04-03-01 {
+  width: 70%;
+}
+
+.bg04 .bg04-03-01 {
+  float: right;
+  width: 15%;
+  text-align: left;
+}
+
+.bg04 .bg04-03-01 li {
+  padding-top: 3px;
+}
+
+.bg04-04 {
+  width: 100%;
+  display: flex;
+}
+
+.bg04-04 #bg04-04-01 {
+  width: 68%;
+}
+
+.bg04-04 .bg04-04-01 {
+  text-align: left;
+  width: 32%;
+}
+.bg04-03-li{
+  font-family: Jeju Gothic;
+  color: var(--lightgreen);
+}
+.bg04-03-li:visited{
+  color: var(--lightgreen);
+}
+.bg04-03-li:hover{
+  color:var(--lightviolet);
+}
+.bg04-03 >ul{
+  display: flex;
+}
+.bg04-03>ul li{
+  margin-right: 1em;
+}

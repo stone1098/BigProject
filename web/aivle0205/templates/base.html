@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- bootstrap link, keep in <head> tag -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}" />
+	<title>수리수리차수리</title>
+</head>
+
+<body id="page-top">
+	<div id="container01">
+	    <!--#############################################-->
+		<nav class="nav scroll-hidden">
+			<ul class="menu">
+				<li>
+					<a href="{% url 'index' %}">Home</a>
+				</li>
+				<li><a href="#">Service+</a>
+				<ul class="submenu">
+					<li><a href="{% url 'repair_cost:index' %}">Repair Cost</a></li>
+					<li><a href="{% url 'fault_ratio:index' %}">Fault Ratio</a></li>
+				</ul></li>
+				<li><a href="#">Support+</a>
+					<ul class="submenu">
+						<li><a href="{% url 'post:index' %}">Post Board</a></li>
+						<li><a href="{% url 'contact' %}">Contact Us</a></li>
+					</ul></li>
+					{% if user.is_authenticated %}
+					<li><a href="#" onClick="jumpToID(event, 'support')">account</a>
+						<ul class="submenu">
+							<li><a href="{% url 'logout' %}">Logout</a></li>
+							<li><a href="{% url 'accounts:update' %}">update</a></li>
+						</ul>
+					</li>
+					{% else %}
+					<li><a href="{% url 'login' %}">Login</a></li>{% endif %}</li>
+				<li><a href="{% url 'about' %}">About Us</a></li>
+			</ul>
+			</nav>
+	<!--#############################################-->
+
+	<main id="main">
+		{% block content %}
+		{% endblock %}
+	</main>
+	<footer class="bg04" id="footer">
+        <div id="bg04-02">AIVLE SCHOOL</div>
+        <hr id="bg04-03-hr">
+        <div class="bg04-03">
+            <ul>
+                <li>
+                    <!--###### 이용약관 ######-->
+                    <a href="{% url 'test' %}" onclick="goPrivacy(event)" class = "bg04-03-li">개인정보 처리방침 이용약관</a>
+                    <script>
+                        function goPrivacy(event) {
+                            event.preventDefault();  // 링크 클릭 시 기본 동작(페이지 이동)을 막음
+                            // 팝업 창 열기
+                            window.open('/test/', '_blank', 'width=600,height=500,scrollbars=yes');
+                        }
+                    </script>
+                    <!--##############-->
+                </li>
+                <li><a href="{% url 'contact' %}" class="bg04-03-li">Contact Us</a></li>
+                <li><a href="{% url 'about' %}" class="bg04-03-li">About Us</li>
+            </ul>
+        </div>
+        <footer class="bg04-04">
+            <div id="bg04-04-01"></div>
+            <div class="bg04-04-01">Copyright 2023 AIVLE 2-5.</div>
+        </footer>
+</footer>
+	
+	<a href="#" class="back-to-top" onClick="jumpToID(event, 'page-top')"><img src="{% static 'image/up.png' %}" alt="위로아이콘" id="back-to-top-button"></a>
+	<a href="#" class="top-to-back" onClick="jumpToFoot(event, 'footer')"><img src="{% static 'image/down.png' %}" alt="아래로아이콘" id="top-to-back-button"></a>
+	<!-- bootstrap js, insert before </body> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+	<script src="{% static 'js/nav.js' %}"></script>
+</body>
+</html>

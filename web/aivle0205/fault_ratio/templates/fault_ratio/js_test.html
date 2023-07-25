@@ -1,0 +1,129 @@
+<h1> Web <-> DB, 박준수 짱 </h1>
+<h1> Input </h1>
+
+
+<form action="{% url 'fault_ratio:js_test' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{forms.as_p}}
+    <input type="submit" value="to DB">
+    {% if result %}
+    <h3>Succesfully Predicted</h3>
+    <h3>{{result.ratio}}</h3>
+    {% endif %}
+</form>
+
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>웹 페이지의 구성 요소</title>
+{% comment %} <link href="dw_fault_ratio.css" rel="stylesheet" type="text/css"> {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/dw_fault_ratio.css' %}" />
+
+<script>
+    var container = document.querySelector('.container');
+    var nav = document.querySelector('nav');
+
+    container.addEventListener('mouseenter', function () {
+        nav.classList.add('nav-hover');
+    });
+
+    container.addEventListener('mouseleave', function () {
+        nav.classList.remove('nav-hover');
+    });
+</script>
+
+</head>
+<body>
+<!--#############################################-->
+<div id="container01">
+<nav class="navi01 scroll-hidden">
+    <div class="navi02">
+        <ul>
+            <li><a class = 'nav-link' href = '/'>Home</a></li>
+            <li>Service+</li>
+            <li>Support+</li>
+            <li>Login</li>
+            <li>About Us</li>
+        </ul>
+    </div>
+    
+</nav><!--네비게이션 바-->
+<!--#############################################-->
+
+<main>
+<section class="'bg01">
+    <div class="container01"></div>
+    <div class="container01">
+        <div>
+            <div id="title">
+                "FAULT RATIO"
+            </div>
+        </div>
+    </div>
+    <div class="container01"></div>
+</section><!--과실 비율을 출력-->
+
+<section class="bg02">
+    <div class="container02"></div>
+    <div class="container02">
+        <div>
+            Enter a simple accident report, and the AI will estimate 
+            the likely percentage of fault based on past verdicts.
+        </div>
+    </div>
+    <div class="container02"></div>
+</section><!--간단 설명-->
+
+<section class="bg03">
+    <!-- <div id="container02"> -->
+        <div class="container03"></div>
+        <div class="container03">
+            <div id="accidentreport">Accident Report</div>
+            <label>
+                <div class="reportbox">
+                    <textarea id="reportbox" placeholder="write report">
+                    
+                </textarea>
+            </div>
+            </label>
+            <button id="submit" type="button" value="submit">submit</button>
+        </div>
+        <div class="container03"></div>
+    <!-- </div> -->
+</section><!--사고 경위서 입력받는 텍스트 상자-->
+</main>
+
+<footer class="bg04">
+    <header>sign up for our service</header>
+    <section>
+        <div>
+            <div>
+                <ul>
+                    <li>Home</li>
+                    <li>Repair Cost</li>
+                    <li>Fault Ratio</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Bulletin Board</li>
+                    <li>Contact Us</li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div>Copyright 2023 AIVLE 2-5.</div>
+    </footer>
+</footer>
+</div>
+
+</body>
+</html>

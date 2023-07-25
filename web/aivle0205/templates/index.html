@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- 메인 화면 처음에 보이는 간단한 화면 / 간단한 소개 정도? -->
+<header id="preview" class="masthead bg-light">
+	<h1 id="bg01-title" class="h-50">SURI SURI CHASURI</h1>
+	<div class="container px-4 px-lg-5 h-50 w-50">
+		<div class="row" style="justify-content: flex-end;">
+			<div class="col-lg-8">
+				<p>Our Service utilizes AI to detect vehicle damage and price repairs, and to predict the percentage of fault in an accident using data from past verdicts.</p>
+			</div>
+			<div class="col-lg-8">
+				<h3><a href="#" onClick="jumpToID(event, 'service')">Our Service Now ▼</a></h3>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- 여기서부터 스크롤 내리면 보이는 페이지들 -->
+{% load static %}
+<section id="service" class="page-section bg-primary">
+	<div class="container px-4 px-lg-5">
+		<h2 class="mt-0">Service+</h2>
+		<div class="row">
+			<div id="repcost" class="col">
+				<a href="{% url 'repair_cost:index' %}">
+					<h3 class="h4 mt-2">repair costs</h3>
+					<div class="mt-4">
+						<div class="imgdiv">
+							<img class="img-fluid" src="{% static 'image/repcost.png' %}">
+						</div>
+						<p class="mt-4 mb-0">Upload an image of the damage to your car and the AI will calculate the cost of repair.</p>
+					</div>
+				</a>
+			</div>
+			<div id="faultrat" class="col">
+				<a href="{% url 'fault_ratio:index' %}">
+					<h3 class="h4 mt-2">Fault Ratio</h3>
+					<div class="mt-4">
+						<div class="imgdiv">
+							<img class="img-fluid" src="{% static 'image/faultrat.png' %}">
+						</div>
+						<p class="mt-4 mb-0">Enter asimple accident report, and the AI will estimate the likely percentage of fault based on past verdicts.</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="support" class="page-section bg-light">
+	<div class="container px-4 px-lg-5">
+		<h2 class="mt-0">Support+</h2>
+		<div class="row">
+			<div class="col">
+				<h3 class="text-center mt-4"><a href='#' onclick="switchPannel(event, -1)">◀</a> <a href='#' onclick="switchPannel(event, 1)">▶</a></h3>
+				<div class="row mt-4">
+					<div class="col pannel board active-pannel" data-idx=0>
+						<h4 class="mt-0">Bulletin Board</h4>
+						<p class="mt-4">You can view the history of usres who have used our services in the past, or your own history. Please refer to the page to start using our services.</p>
+						<a href="{% url 'post:index' %}">Show All</a>
+					</div>
+					<div class="col pannel contact" data-idx=1>
+						<h4 class="mt-0">Contact Us</h4>
+						<p class="mt-4">You can communicate with us via email. We'd love to hear from you about any questions or issues you've had while using our services.</p>
+						<a href="{% url 'contact' %}">Show All</a>
+					</div>
+				</div>
+			</div>
+			<div id='canvas' class="col">
+				<img class="img-fluid image board active-pannel" src="{% static 'image/post.png' %}">
+				<img class="img-fluid image contact" src="{% static 'image/contact.png' %}">
+			</div>
+		</div>
+	</div>
+</section>
+<section id="signup" class="page-section bg-primary">
+	<div class="container">
+		<h1 id="ft-title">SURI SURI CHASURI</h1>
+		<a class="linktxt" href="{% url 'accounts:signup' %}"><p>>> sign up for our service</p></a>
+	</div>
+</section>
+{% endblock %}

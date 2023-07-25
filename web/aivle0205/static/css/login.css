@@ -1,0 +1,299 @@
+@font-face {
+    font-family: 'Jonkey One';
+    src: url('../font/Jockeyone.ttf') format('truetype');
+}@font-face {
+    font-family: 'Jeju Gothic';
+    src: url('../font/JejuGothic.ttf') format('truetype');
+}
+:root{
+  --base-font-family: 'Jeju Gothic';
+  --title-font-family: 'Jockey One';
+
+  --lightgreen : #003702;
+  --green : #CDE1CF;
+  --darkgreen : #002001;
+  --lightviolet : #D686CE;
+}
+body, html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#container01{
+    display: flex;
+    flex-direction: column;
+    min-height: 120vh;
+    overflow: hidden;
+}
+
+/*####################################*/
+/*네비바 부분*/
+nav{
+    z-index: 99;
+    height: 5vh;
+    width: 100%;
+    position: fixed;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.menu {
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    font-family: Jonkey One;
+  }
+  .menu > li {
+    width: 20%; /*20*5=100%*/
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    background-color: var(--darkgreen);
+  }
+  .menu > li:hover a{
+    color: var(--darkgreen);
+  }
+  .menu a {
+    color: var(--green);
+  }
+  
+  .submenu > li {
+    line-height: 50px;
+    background-color: var(--green);
+  }
+  
+  .submenu {
+    height: 0; /*ul의 높이를 안보이게 처리*/
+    overflow: hidden;
+    margin-right: 2em;
+  }
+
+  .menu > li:hover {
+    background-color: var(--green);
+    transition-duration: 0.5s;
+    /* border-radius: 10px; */
+  }
+  .menu > li:hover .submenu li:hover{
+    background-color: var(--darkgreen);
+    border-radius: 10px;
+  }
+  .menu > li:hover .submenu li:hover a{
+    color: var(--green);
+  }
+  .menu > li:hover .submenu {
+    height: 110px; /*서브메뉴 li한개의 높이 50*5*/
+    transition-duration: 0.7s;
+  }
+/*####################################*/
+/*~~~큰 제목 부분~~~*/
+main{
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+section.bg01{
+    display: flex;
+    justify-content: center;
+    height: 25vh;
+
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+.container01{
+    flex: 1;
+    text-align: center;
+    padding-top: 100px;
+    background-color: #CDE1CF;
+}
+
+#title{
+    background-color: #CDE1CF;
+    font-size: 100px;
+    font-family: Jonkey One;
+    color: #003702;
+    /* text-shadow: 0px 6px #ff0606; */
+    
+}
+/*####################################*/
+.bg03{
+    width: 100%;
+    height: 100%;
+    background-color: #CDE1CF;
+    padding-top: 5px;
+    padding-bottom: 15em;
+}
+.bg03-01{
+    justify-content: center;
+    text-align: center;
+    font-family: Jeju Gothic;
+    margin: 3em;
+    color: #003702;
+}
+.bg03-btn{
+    margin: 1em;
+    border: none;
+    border: 3px solid #003702;
+    background-color: #CDE1CF;
+    color: #003702;
+    width: 15%;
+    height: 2em;
+    border-radius: 20px;
+    font-family: Jeju Gothic;
+    font-size: large;
+}
+.bg03-btn:hover{
+    background-color: #003702;
+    color: #CDE1CF;
+}
+.bg03 a{
+    font-size: 13px;
+    border-bottom: 1px solid;
+    color: #FB8654;
+}
+.bg03 a:hover{
+    color: #FBCC54;
+}
+.bg03-02-input{
+    border: none;
+    background-color: #CDE1CF;
+    border-bottom: 2px solid #003702;
+    margin: 1em;
+}
+.bg03-sns{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    height: 3em;
+    background-color: white;
+    width: 10%;
+    border-radius: 10px;
+}
+.bg03-sns a{
+    width: 50%;
+    height: 100%;
+    text-decoration-line: none;
+    text-decoration: none;
+}
+.bg03-sns-img{
+    margin: 1em;
+    width: 30%;
+    height: 50%;
+}
+.bg03-sns-img:hover{
+    cursor: pointer;
+    background-color: #003702;
+    opacity: 0.5;
+}
+#bg03-sns-text{
+    font-size: 15px;
+    margin: 1em;
+}
+.bg03-hr{
+    width: 50%;
+    border: 1px solid ;
+}
+.bg03-hr-01{
+    width: 30%;
+    border: 0.5px solid;
+}
+/*#############################################*/
+/*footer부분*/
+.bg04 {
+  background-color: var(--lightgreen);
+  color: var(--green);
+  font-family: Jeju Gothic;
+  width: 100%;
+
+}
+
+#bg04-01 {
+  height: 50px;
+}
+
+#bg04-01-01 {
+  border-color: var(--green);
+}
+
+#bg04-02 {
+  margin-top: 0%;
+  margin-left: 20%;
+  font-family: Jonkey One;
+  font-size: 100px;
+  font-weight: bold;
+}
+#bg04-03-hr{
+  border: 1px solid var(--green);
+  width: 60%;
+  background-color: var(--lightgreen);
+}
+/*###############################*/
+.bg04-02 {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg04-02 .bg04-02-img {
+  padding: 2px;
+}
+
+/*###############################*/
+.bg04-03{
+  margin-left: 18%;
+}
+.bg04 .bg04-03 {
+  display: flex;
+}
+
+.bg04 .bg04-03 ul {
+  list-style: none;
+}
+
+.bg04 #bg04-03-01 {
+  width: 70%;
+}
+
+.bg04 .bg04-03-01 {
+  float: right;
+  width: 15%;
+  text-align: left;
+}
+
+.bg04 .bg04-03-01 li {
+  padding-top: 3px;
+}
+
+.bg04-04 {
+  width: 100%;
+  display: flex;
+}
+
+.bg04-04 #bg04-04-01 {
+  width: 68%;
+}
+
+.bg04-04 .bg04-04-01 {
+  text-align: left;
+  width: 32%;
+}
+.bg04-03-li{
+  font-family: Jeju Gothic;
+  color: var(--green);
+}
+.bg04-03-li:visited{
+  color: var(--green);
+}
+.bg04-03-li:hover{
+  color:var(--lightviolet);
+}
+.bg04-03 >ul{
+  display: flex;
+}
+.bg04-03>ul li{
+  margin-right: 1em;
+}
